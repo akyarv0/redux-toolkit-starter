@@ -9,6 +9,7 @@ import { useEffect } from "react"
 import { getNews } from "../features/newsSlice"
 import { useDispatch, useSelector } from "react-redux"
 import loadingGif from "../assets/loading.gif"
+import { clearNewsData } from "../features/newsSlice"
 
 const News = () => {
   const dispatch = useDispatch()
@@ -17,6 +18,11 @@ const News = () => {
 
   useEffect(() => {
     dispatch(getNews())
+    return () => {
+      dispatch(clearNewsData())
+      
+    }
+    
   }, [])
 
   return (
